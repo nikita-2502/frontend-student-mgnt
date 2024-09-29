@@ -1,0 +1,63 @@
+<!-- <app-student-form
+  *ngIf="showAddStudentForm"
+  (CloseForm)="closeAddStudentForm()"
+  (EmitFormData)="AddOrUpdateStudent($event)"
+></app-student-form> -->
+
+<!-- (keyup)="applyFilter($event)" -->
+
+<div class="container">
+  <div class="header">
+    <mat-form-field appearance="standard">
+      <input
+        type="text"
+        [formControl]="filterData"
+        matInput
+        placeholder="Filter"
+        
+      />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="openAddStudentForm()">Add Student</button>
+  </div>
+
+  <table mat-table matSort (matSortChange)="onSortChange($event)" [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- First Name Column -->
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+    </ng-container>
+
+    <!-- Last Name Column -->
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <!-- DOB Column -->
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>DOB</th>
+      <td mat-cell *matCellDef="let element">{{ element.dob | date :'mediumDate' }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element; let i=index">
+        <button mat-icon-button (click)="onDelete(element.studentId, i)"><mat-icon>close</mat-icon></button>
+        <button mat-icon-button (click)="onEdit(element.studentId, i)"><mat-icon>edit</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)"></mat-paginator>
+</div>

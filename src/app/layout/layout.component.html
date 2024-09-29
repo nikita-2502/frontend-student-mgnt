@@ -1,0 +1,17 @@
+<div>
+  <app-header></app-header>
+</div>
+<div [ngClass]="{'sidebarExpand': isMenu }">
+  <ng-container *ngIf="isMenu">
+    <div class="sideBar">
+      <app-sidebar></app-sidebar>
+    </div>
+  </ng-container>
+  <div [ngClass]="{'mainContent': isMenu }" style="padding: 0 5px 15px;">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- <div>
+  <app-footer></app-footer>
+</div> -->

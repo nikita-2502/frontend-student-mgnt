@@ -1,0 +1,54 @@
+
+<div class="app-login-form">
+  <h2>{{ isLoginMode ? "Login" : "Sign Up" }}</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+    <mat-form-field appearance="standard">
+      <mat-label>Email Address</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        placeholder="Email address"
+      />
+      <mat-error *ngIf="loginForm.get('email')?.invalid">{{
+        getErrorMessage('email')
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+      />
+      <mat-error *ngIf="loginForm.get('password')?.invalid">{{
+        getErrorMessage('password')
+      }}</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      type="submit"
+      class="app-login-btn"
+      [disabled]="loginForm.invalid"
+    >
+      {{ isLoginMode ? "Login" : "Sign Up" }}
+    </button>
+    <p>
+      {{
+        isLoginMode ? "Do not have an accout yet?" : "Already have an account?"
+      }}
+      <button
+        mat-stroked-button
+        type="button"
+        class="app-toggle-btn"
+        (click)="onClick()"
+      >
+        {{ isLoginMode ? "Register" : "Login" }}
+      </button>
+    </p>
+  </form>
+</div>

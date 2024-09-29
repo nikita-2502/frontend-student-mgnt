@@ -1,0 +1,204 @@
+<!-- body text & caption -->
+
+<!-- button toggle -->
+
+<!-- icons -->
+
+<!-- badges -->
+
+<!-- loading spinner -->
+
+<!-- toolbar -->
+<!-- <div>
+  <mat-toolbar>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Menu</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+<hr /> -->
+
+<!-- side navbar -->
+<!-- <div>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">Side Navbar</mat-sidenav>
+    <mat-sidenav-content>
+      <button mat-stroked-button (click)="sidenav.toggle()">Sidebar</button>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <hr />
+</div> -->
+
+<!-- menu -->
+<!-- <div>
+  <button mat-stroked-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="fruits">Fruits</button>
+    <button mat-menu-item [matMenuTriggerFor]="veggies">Vegetables</button>
+  </mat-menu>
+  <mat-menu #fruits="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="apples">Apple</button>
+    <button mat-menu-item>Mango</button>
+    <button mat-menu-item>Orange</button>
+    <button mat-menu-item>Grapes</button>
+  </mat-menu>
+  <mat-menu #veggies="matMenu">
+    <button mat-menu-item>Potato</button>
+    <button mat-menu-item>Peas</button>
+    <button mat-menu-item [matMenuTriggerFor]="bellpepper">Bellpepper</button>
+    <button mat-menu-item>Bitterguard</button>
+  </mat-menu>
+  <mat-menu #apples="matMenu">
+    <button mat-menu-item>Red Apple</button>
+    <button mat-menu-item>Green Apple</button>
+  </mat-menu>
+  <mat-menu #bellpepper="matMenu">
+    <button mat-menu-item>Red Bellpepper</button>
+    <button mat-menu-item>Yellow Bellpepper</button>
+  </mat-menu>
+  <hr />
+</div> -->
+
+<!-- list -->
+<!-- <div>
+  <mat-list>
+    <mat-list-item>
+      <mat-icon matListIcon>folder</mat-icon>
+      <h3 matLine>Photos</h3>
+      <p matLine>1067</p>
+    </mat-list-item>
+  </mat-list>
+  <mat-divider></mat-divider>
+  <mat-nav-list>
+    <a mat-list-item href="#">Home</a>
+    <a mat-list-item href="#">About</a>
+    <a mat-list-item href="#">Contact</a>
+  </mat-nav-list>
+</div>
+<hr /> -->
+
+<!-- card -->
+
+<!-- tabs -->
+<!-- <div>
+  <mat-tab-group>
+    <mat-tab label="Angular">Angular</mat-tab>
+    <mat-tab label="React">React</mat-tab>
+    <mat-tab label="Pearl">Pearl</mat-tab>
+  </mat-tab-group>
+ </div><hr> -->
+
+<!-- form fields -->
+<form>
+  <!-- input field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput required /> </mat-form-field
+  ><br />
+
+  <!-- select -->
+  <mat-form-field appearance="fill">
+    <mat-label>Topic</mat-label>
+    <mat-select>
+      <mat-option>None</mat-option>
+      <mat-option value="angular">Angular</mat-option>
+      <mat-option value="react">React</mat-option>
+      <mat-option value="vue">Vue</mat-option>
+    </mat-select> </mat-form-field
+  ><br />
+
+  <!-- auto Complete -->
+  <mat-form-field appearance="fill">
+    <mat-label>Course</mat-label>
+    <input
+      type="text"
+      matInput
+      [matAutocomplete]="auto"
+      [formControl]="myControl"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete> </mat-form-field
+  ><br />
+
+  <!-- checkbox & radio button -->
+
+  <!-- date picker -->
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="myDate" />
+    <mat-datepicker-toggle [for]="myDate" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #myDate></mat-datepicker> </mat-form-field
+  ><br />
+
+  <!-- tooltip -->
+  <button
+    mat-raised-button
+    matTooltip="Welcome...!!!"
+    matTooltipShowDelay="600"
+    matTooltipHideDelay="2000"
+  >
+    Tooltip</button
+  ><br />
+</form>
+<hr />
+
+<!-- snackbar -->
+<button mat-stroked-button (click)="openSnackbar('Item Deleted', 'dismiss')">
+  Show Snack-bar
+</button>
+<hr />
+
+<!-- dailog box -->
+<!-- <button mat-raised-button (click)="openDailog()">Show Dailog</button> -->
+
+<!-- table -->
+ <mat-form-field appearance="standard">
+  <input type="text" matInput placeholder="Filter" (keyup)="applyFilter($event)">
+ </mat-form-field>
+
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Weight</th>
+    <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Symbol</th>
+    <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+<hr>

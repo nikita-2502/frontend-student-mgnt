@@ -1,0 +1,75 @@
+
+    <div class="popup">
+      <h2>{{ isEditMode ? 'Update Details' : 'Add New Student' }}</h2>
+      <div class="content">
+        <section class="container">
+          <form class="form" [formGroup]="addStudent" (ngSubmit)="formSubmit()">
+            <mat-form-field class="input-box" appearance="fill">
+              <mat-label>First Name: </mat-label>
+              <input type="text" matInput formControlName="first_name" />
+              <mat-error *ngIf="addStudent.get('first_name')?.invalid">{{
+                getErrorMessage("first_name")
+              }}</mat-error> </mat-form-field
+            ><br />
+            <mat-form-field class="input-box" appearance="fill">
+              <mat-label>Last Name: </mat-label>
+              <input type="text" matInput formControlName="last_name" />
+              <mat-error *ngIf="addStudent.get('last_name')?.invalid">{{
+                getErrorMessage("last_name")
+              }}</mat-error> </mat-form-field
+            ><br />
+            <mat-form-field class="input-box" appearance="fill">
+              <mat-label>Email: </mat-label>
+              <input type="email" matInput formControlName="email" />
+              <mat-error *ngIf="addStudent.get('email')?.invalid">{{
+                getErrorMessage("email")
+              }}</mat-error> </mat-form-field
+            ><br />
+            <mat-form-field class="input-box" appearance="fill">
+              <mat-label>DOB: </mat-label>
+              <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dob" />
+              <mat-error *ngIf="addStudent.get('dob')?.invalid">{{
+                getErrorMessage("dob")
+              }}</mat-error>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker> </mat-form-field
+            ><br />
+            <mat-form-field appearance="fill">
+              <mat-label>Fav Sport: </mat-label>
+              <mat-select formControlName="sport">
+                <mat-option value="cricket">Cricket </mat-option>
+                <mat-option value="football">Football </mat-option>
+                <mat-option value="badminton">Badminton </mat-option>
+                <mat-option value="hockey">Hockey </mat-option>
+                <mat-option value="swimming">Swimming </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addStudent.get('sport')?.invalid">{{
+                getErrorMessage("sport")
+              }}</mat-error>
+              </mat-form-field
+            ><br />
+            <mat-radio-group class="example-radio-group" formControlName="gender">
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female"
+                >Female</mat-radio-button
+              > </mat-radio-group
+            ><br />
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              [disabled]="!addStudent.valid"
+            >
+              Submit
+            </button>
+            <button type="button" mat-raised-button (click)="onCancel()">
+              Cancel
+            </button>
+          </form>
+        </section>
+      </div>
+    </div>
+  

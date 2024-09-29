@@ -1,0 +1,77 @@
+<div>
+  <h2>{{ isEditMode ? "Update Details" : "Add New Class" }}</h2>
+  <div>
+    <section>
+      <form [formGroup]="addClassDetail" (ngSubmit)="formSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Class: </mat-label>
+          <mat-select formControlName="class_name">
+            <mat-option
+              *ngFor="let class of classes"
+              [value]="class"
+              >{{ class }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="addClassDetail.get('class_name')?.invalid">{{
+            getErrorMessage("class_name")
+          }}</mat-error> </mat-form-field
+        ><br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>Division: </mat-label>
+          <mat-select formControlName="division">
+            <mat-option value="A">A</mat-option>
+            <mat-option value="B">B</mat-option>
+            <mat-option value="C">C</mat-option>
+            <mat-option value="D">D</mat-option>
+          </mat-select>
+          <mat-error *ngIf="addClassDetail.get('division')?.invalid">{{
+            getErrorMessage("division")
+          }}</mat-error> </mat-form-field
+        ><br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>Class Teacher: </mat-label>
+          <input type="text" matInput formControlName="classTeacher" />
+          <mat-error *ngIf="addClassDetail.get('classTeacher')?.invalid">{{
+            getErrorMessage("classTeacher")
+          }}</mat-error> </mat-form-field
+        ><br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>No of Students: </mat-label>
+          <input type="number" matInput formControlName="noOfStd" />
+          <mat-error *ngIf="addClassDetail.get('noOfStd')?.invalid">{{
+            getErrorMessage("noOfStd")
+          }}</mat-error> </mat-form-field
+        ><br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>Students: </mat-label>
+          <mat-select formControlName="students" multiple>
+            <mat-option
+              *ngFor="let student of studentsName"
+              [value]="student.studentId"
+              >{{ student?.first_name }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="addClassDetail.get('students')?.invalid">{{
+            getErrorMessage("students")
+          }}</mat-error> </mat-form-field
+        ><br />
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!addClassDetail.valid"
+        >
+          Submit
+        </button>
+        <button type="button" mat-raised-button (click)="onCancel()">
+          Cancel
+        </button>
+      </form>
+    </section>
+  </div>
+</div>
